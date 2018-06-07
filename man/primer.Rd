@@ -17,13 +17,14 @@ primer(gr, upstream = 2000, downstream = 2000, anchor = c("TSS", "TES",
 
 \item{species}{character(1). Avaliable values: "mm9", "mm10", "hg19", "hg38", "danRer10"}
 
-\item{...}{Parameters could be passed to \link[CRISPRseek:offTargetAnalysis]{offTargetAnalysis}}
+\item{...}{Parameters could be passed to \link[CRISPRseek:offTargetAnalysis]{offTargetAnalysis}. 
+Default settings are: scoring.method = "CFDscore", annotatePaired = FALSE, max.mismatch=1}
 }
 \description{
 CRISPR/Cas9 primer designer.
 }
 \examples{
 gr <- system.file('extdata', 'Lamp3.bed', package = 'CPD')
-primer(gr, anchor="onlyUpstream&Downstream", species="mm10")
+primer(gr, anchor="onlyUpstream&Downstream", species="mm10", chromToSearch="chr16", outputDir="test")
 
 }

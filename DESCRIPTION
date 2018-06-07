@@ -9,7 +9,7 @@ Description: CPD is a R/Bioconductor package for CRISPR/Cas9 primer design.
              Output will be multiple excel sheet of primers and off targets.
 License: GPL (>=2)
 Depends: R (>= 3.5.0)
-Imports: CRISPRseek, GenomicRanges, BSgenome, ChIPpeakAnno, rtracklayer
+Imports: CRISPRseek, GenomicRanges, BSgenome, Biostrings, ChIPpeakAnno, rtracklayer
 Suggests: BiocStyle, knitr, RUnit,
           BSgenome.Mmusculus.UCSC.mm10, 
           TxDb.Mmusculus.UCSC.mm10.knownGene, 

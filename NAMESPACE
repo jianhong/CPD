@@ -2,6 +2,8 @@
 
 export(primer)
 import(GenomicRanges)
+importFrom(BSgenome,getSeq)
+importFrom(Biostrings,writeXStringSet)
 importFrom(CRISPRseek,offTargetAnalysis)
 importFrom(ChIPpeakAnno,toGRanges)
 importFrom(rtracklayer,export.bed)

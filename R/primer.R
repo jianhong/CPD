@@ -4,16 +4,19 @@
 #' @param upstream,downstream numeric(1).upstream or downstream of the coordinates.
 #' @param anchor Anchor point of upstream and downstream. TSS: search primter for promoter of given coordinates.
 #' @param species character(1). Avaliable values: "mm9", "mm10", "hg19", "hg38", "danRer10"
-#' @param ... Parameters could be passed to \link[CRISPRseek:offTargetAnalysis]{offTargetAnalysis}
+#' @param ... Parameters could be passed to \link[CRISPRseek:offTargetAnalysis]{offTargetAnalysis}. 
+#' Default settings are: scoring.method = "CFDscore", annotatePaired = FALSE, max.mismatch=1
 #' @return NULL
 #' @importFrom ChIPpeakAnno toGRanges 
 #' @importFrom CRISPRseek offTargetAnalysis
 #' @importFrom rtracklayer export.bed
+#' @importFrom BSgenome getSeq
+#' @importFrom Biostrings writeXStringSet
 #' @import GenomicRanges
 #' @export
 #' @examples 
 #' gr <- system.file('extdata', 'Lamp3.bed', package = 'CPD')
-#' primer(gr, anchor="onlyUpstream&Downstream", species="mm10")
+#' primer(gr, anchor="onlyUpstream&Downstream", species="mm10", chromToSearch="chr16", outputDir="test")
 #' 
 primer <- function(gr, upstream=2000, downstream=2000, anchor=c("TSS", "TES", "ALL", "onlyUpstream&Downstream"),
                    species=c("mm10", "mm9", "hg19", "hg38", "danRer10"), ...){
@@ -26,6 +29,9 @@ primer <- function(gr, upstream=2000, downstream=2000, anchor=c("TSS", "TES", "A
     gr <- toGRanges(gr)
   }
   stopifnot(is(gr, "GRanges"))
+  if(length(names(gr))!=length(gr)){
+    names(gr) <- paste0("coor", formatC(seq.int(length(gr)), flag = "0", width = nchar(as.character(length(gr)))))
+  }
   gr <- switch(anchor,
                TSS=promoters(x = gr, upstream = upstream, downstream = downstream),
                TES={
@@ -53,7 +59,9 @@ primer <- function(gr, upstream=2000, downstream=2000, anchor=c("TSS", "TES", "A
                    left <- promoters(x = left, upstream = upstream, downstream = 0)
                    right <- promoters(x = right, upstream = downstream, downstream = 0)
                    strand(left) <- strand(right) <- strand(gr)
-                   reduce(c(left, right))
+                   names(left) <- paste0(names(gr), "l")
+                   names(right) <- paste0(names(gr), "r")
+                   c(left, right)
                  })
                })
   inputFilePath <- tempfile()
@@ -75,9 +83,6 @@ primer <- function(gr, upstream=2000, downstream=2000, anchor=c("TSS", "TES", "A
                      "org.Dr.egSYMBOL"))
   rownames(bgn) <- c("mm10", "mm9", "hg19", "hg38", "danRer10")
   args <- list(...)
-  dots <- substitute(list(...))[-1]
-  names <- make.names(unlist(sapply(dots, deparse)))
-  names(args) <- names
   if(is.null(args$BSgenomeName)){
     require(bgn[species, "genome"], character.only = TRUE)
     args$BSgenomeName <- get(bgn[species, "genome"])
@@ -95,5 +100,16 @@ primer <- function(gr, upstream=2000, downstream=2000, anchor=c("TSS", "TES", "A
   }
   args$format <- "bed"
   args$inputFilePath <- inputFilePath
+  if(is.null(args$scoring.method)){
+    args$scoring.method <- "CFDscore"
+  }
+  if(is.null(args$annotatePaired)){
+    args$annotatePaired <- FALSE
+  }
+  if(is.null(args$max.mismatch)){
+    args$max.mismatch <- 1
+  }
+  seq <- getSeq(args$BSgenomeName, gr)
+  writeXStringSet(x = seq, filepath = filepath(args$inputFilePath, "inputs.fa"), format="fasta")
   do.call(what = offTargetAnalysis, args = args)
 }
