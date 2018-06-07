@@ -1,0 +1,19 @@
+Package: CPD
+Type: Package
+Title: CRISPR/Cas9 primer designer
+Version: 0.0.1
+Author: Jianhong Ou
+Maintainer: Jianhong Ou <jianhong.ou@duke.edu>
+Description: CPD is a R/Bioconductor package for CRISPR/Cas9 primer design. 
+             The input is GenomicRanges object. 
+             Output will be multiple excel sheet of primers and off targets.
+License: GPL (>=2)
+Depends: R (>= 3.5.0)
+Imports: CRISPRseek, GenomicRanges, BSgenome, ChIPpeakAnno, rtracklayer
+Suggests: BiocStyle, knitr, RUnit,
+          BSgenome.Mmusculus.UCSC.mm10, 
+          TxDb.Mmusculus.UCSC.mm10.knownGene, 
+          org.Mm.eg.db
+biocViews: SequenceMatching, Visualization
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
