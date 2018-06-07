@@ -110,6 +110,6 @@ primer <- function(gr, upstream=2000, downstream=2000, anchor=c("TSS", "TES", "A
     args$max.mismatch <- 1
   }
   seq <- getSeq(args$BSgenomeName, gr)
-  writeXStringSet(x = seq, filepath = filepath(args$inputFilePath, "inputs.fa"), format="fasta")
+  writeXStringSet(x = seq, filepath = file.path(args$inputFilePath, "inputs.fa"), format="fasta")
   do.call(what = offTargetAnalysis, args = args)
 }
