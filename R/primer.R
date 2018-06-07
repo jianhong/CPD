@@ -111,7 +111,9 @@ primer <- function(gr, upstream=2000, downstream=2000, anchor=c("TSS", "TES", "A
     args$max.mismatch <- 1
   }
   seq <- getSeq(args$BSgenomeName, gr)
-  x <- do.call(what = offTargetAnalysis, args = args)
+  dir.create(args$outputDir)
   writeXStringSet(x = seq, filepath = file.path(args$outputDir, "inputs.fa"), format="fasta")
+  args$overwrite <- TRUE
+  x <- do.call(what = offTargetAnalysis, args = args)
   invisible(x)
 }
