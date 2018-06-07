@@ -25,6 +25,7 @@ CRISPR/Cas9 primer designer.
 }
 \examples{
 gr <- system.file('extdata', 'Lamp3.bed', package = 'CPD')
-primer(gr, anchor="onlyUpstream&Downstream", species="mm10", chromToSearch="chr16", outputDir="test")
+primer(gr, anchor="onlyUpstream&Downstream", species="mm10", 
+       chromToSearch="chr16", outputDir="test")
 
 }

@@ -16,7 +16,8 @@
 #' @export
 #' @examples 
 #' gr <- system.file('extdata', 'Lamp3.bed', package = 'CPD')
-#' primer(gr, anchor="onlyUpstream&Downstream", species="mm10", chromToSearch="chr16", outputDir="test")
+#' primer(gr, anchor="onlyUpstream&Downstream", species="mm10", 
+#'        chromToSearch="chr16", outputDir="test")
 #' 
 primer <- function(gr, upstream=2000, downstream=2000, anchor=c("TSS", "TES", "ALL", "onlyUpstream&Downstream"),
                    species=c("mm10", "mm9", "hg19", "hg38", "danRer10"), ...){
@@ -110,6 +111,6 @@ primer <- function(gr, upstream=2000, downstream=2000, anchor=c("TSS", "TES", "A
     args$max.mismatch <- 1
   }
   seq <- getSeq(args$BSgenomeName, gr)
-  writeXStringSet(x = seq, filepath = file.path(args$inputFilePath, "inputs.fa"), format="fasta")
+  writeXStringSet(x = seq, filepath = file.path(args$outputDir, "inputs.fa"), format="fasta")
   do.call(what = offTargetAnalysis, args = args)
 }
