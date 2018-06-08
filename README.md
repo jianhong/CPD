@@ -22,13 +22,13 @@ install_github("jianhong/CPD")
 
 Now it is support mm10, mm9, hg19, hg38, danRer10. Here is the packages should be installed for each assembly.
 
-         | genome                          | txdb                                 | orgAnn      
----------|---------------------------------|--------------------------------------|-------------
-mm10     | BSgenome.Mmusculus.UCSC.mm10    | TxDb.Mmusculus.UCSC.mm10.knownGene   | org.Mm.eg.db
-mm9      | BSgenome.Mmusculus.UCSC.mm9     | TxDb.Mmusculus.UCSC.mm9.knownGene    | org.Mm.eg.db
-hg19     | BSgenome.Hsapiens.UCSC.hg19     | TxDb.Hsapiens.UCSC.hg19.knownGene    | org.Hs.eg.db
-hg38     | BSgenome.Hsapiens.UCSC.hg38     | TxDb.Hsapiens.UCSC.hg38.knownGene    | org.Hs.eg.db
-danRer10 | BSgenome.Drerio.UCSC.danRer10   | TxDb.Drerio.UCSC.danRer10.refGene    | org.Dr.eg.db
+|          | genome                          | txdb                                 | orgAnn      
+| -------- | ------------------------------- | ------------------------------------ | ------------
+| mm10     | BSgenome.Mmusculus.UCSC.mm10    | TxDb.Mmusculus.UCSC.mm10.knownGene   | org.Mm.eg.db
+| mm9      | BSgenome.Mmusculus.UCSC.mm9     | TxDb.Mmusculus.UCSC.mm9.knownGene    | org.Mm.eg.db
+| hg19     | BSgenome.Hsapiens.UCSC.hg19     | TxDb.Hsapiens.UCSC.hg19.knownGene    | org.Hs.eg.db
+| hg38     | BSgenome.Hsapiens.UCSC.hg38     | TxDb.Hsapiens.UCSC.hg38.knownGene    | org.Hs.eg.db
+| danRer10 | BSgenome.Drerio.UCSC.danRer10   | TxDb.Drerio.UCSC.danRer10.refGene    | org.Dr.eg.db
 
 For example: for mm10
 ```
@@ -64,11 +64,12 @@ gRNA(gr, anchor="onlyUpstream&Downstream", species="mm10", outputDir="test")
 
 The restriction enzyme cut sites could be set by REpatternFile parameter. It is the file path of given enzymes in fasta file.
 The content of restriction enzyme cut site pattern file will be like this:
-
- >BamHI
- GGATCC
- >EcoRI
- GAATTC
+<pre>
+>BamHI
+GGATCC
+>EcoRI
+GAATTC
+</pre>
 
 If the file name of the pattern file path is `path/to/enzyme.fa`, set REpatternFile="path/to/enzyme.fa".
 
