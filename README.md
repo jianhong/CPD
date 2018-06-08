@@ -128,5 +128,5 @@ topOfftarget`N`MMdistance2PAM :	mismatch distance to PAM of the top N	hit off ta
 
 REname : restriction enzyme name
 
-uniqREin200	: unique restriction enzyme name in upstream 200 and downstream 200 from gRNA.
+uniqREin200	: unique restriction enzyme names in upstream 100 and downstream 100 around the gRNA.
 
