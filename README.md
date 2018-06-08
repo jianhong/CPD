@@ -41,7 +41,7 @@ biocLite(c("BSgenome.Mmusculus.UCSC.mm10", "TxDb.Mmusculus.UCSC.mm10.knownGene",
 By default, the gRNA search is setting as upstream = 2000, downstream = 2000, 
 scoring.method = "CFDscore", annotatePaired = FALSE, max.mismatch=1.
 
- scoring.method = "CFDscore" means not only the mismatch position but also the mismatch type is considered for scoring.
+ scoring.method = "CFDscore" means not only the mismatch position but also the mismatch type is considered for scoring (see [https://www.nature.com/articles/nbt.3437](Optimized sgRNA design to maximize activity and minimize off-target effects of CRISPR-Cas9)). 
  annotatePaired = FALSE means do NOT search potential paired gRNAs.
  max.mismatch =1 means max mismatch of off target position is 1.
  
@@ -87,6 +87,46 @@ gRNA(gr, anchor="onlyUpstream&Downstream", species="mm10", outputDir="test", max
 
 ### More
 
-Get more helps, please refer the vignette and help files of [https://bioconductor.org/packages/release/bioc/html/CRISPRseek.html](CRISPRseek).
+Get more helps such as how to change PAM pattern, gRNA pattern, please refer the vignette and help files of [https://bioconductor.org/packages/release/bioc/html/CRISPRseek.html](CRISPRseek).
 
+
+## Output
+
+In output folder, you will get multiple files. 
+
+1. gRNAsCRISPRseek.bed : file ready to be used for UCSC genome browser.
+
+2. inputs.fa : fasta file could be used for gRNA search by other tools.
+
+3. Summary.xls: gRNA summary
+
+4. REcutDetails.xls: restriction enzyme cut sites of each gRNA
+
+5. OfftargetAnalysis.xls: off-target details
+
+6. pairedgRNAs.xls (optional): potential paired gRNAs
+
+### How to read Summary.xls
+
+names	: name of gRNA
+
+forViewInUCSC	: coordinates
+
+extendedSequence : extended sequence of gRNA
+
+gRNAefficacy : gRNA efficacy. The higher the better. see [https://www.nature.com/articles/nbt.3026](Rational design of highly active sgRNAs for CRISPR-Cas9–mediated gene inactivation)
+
+gRNAsPlusPAM : sequence of gRNAs plus PAM
+
+top5OfftargetTotalScore : total score of top 5 offtarget. The higher the possibility to get off targets.
+
+top10OfftargetTotalScore : total score of top 10 offtarget
+
+top1Hit.onTarget.MMdistance2PAM : mismatch distance to PAM of the top 1 hit on target
+
+topOfftarget`N`MMdistance2PAM :	mismatch distance to PAM of the top N	hit off target
+
+REname : restriction enzyme name
+
+uniqREin200	: unique restriction enzyme name in upstream 200 and downstream 200 from gRNA.
 
