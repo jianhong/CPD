@@ -9,7 +9,7 @@ Description: CPD is a R/Bioconductor package for CRISPR/Cas9 gRNA design.
              Output will be multiple excel sheet of gRNAs and off targets.
 License: GPL (>=2)
 Depends: R (>= 3.5.0)
-Imports: CRISPRseek, GenomicRanges, BSgenome, Biostrings, ChIPpeakAnno, rtracklayer
+Imports: CRISPRseek, GenomicRanges, BSgenome, Biostrings, ChIPpeakAnno, rtracklayer, utils
 Suggests: BiocStyle, knitr, RUnit,
           BSgenome.Mmusculus.UCSC.mm10, 
           TxDb.Mmusculus.UCSC.mm10.knownGene, 

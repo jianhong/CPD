@@ -3,6 +3,7 @@
 #' @param results output of offTargetAnalysis
 #' @param outputDir output folder of oofTargetAnalysis
 #' @param ... not used
+#' @importFrom utils write.csv
 #' @return a sorted gRNAs table with efficay, off-target number, and unique restriction enzyme cut sites.
 #' 
 
