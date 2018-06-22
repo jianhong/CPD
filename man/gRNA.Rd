@@ -20,12 +20,15 @@ gRNA(gr, upstream = 2000, downstream = 2000, anchor = c("TSS", "TES",
 \item{...}{Parameters could be passed to \link[CRISPRseek:offTargetAnalysis]{offTargetAnalysis}. 
 Default settings are: scoring.method = "CFDscore", annotatePaired = FALSE, max.mismatch=1}
 }
+\value{
+invisible list of results of offTargetAnalysis
+}
 \description{
 CRISPR/Cas9 gRNA designer.
 }
 \examples{
-gr <- system.file('extdata', 'Lamp3.bed', package = 'CPD')
+gr <- system.file('extdata', 'Sftpc.bed', package = 'CPD')
 gRNA(gr, anchor="onlyUpstream&Downstream", species="mm10", 
-       chromToSearch="chr16", outputDir="test")
+       chromToSearch="chr14", outputDir="test")
 
 }

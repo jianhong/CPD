@@ -106,6 +106,8 @@ In output folder, you will get multiple files.
 
 6. pairedgRNAs.xls (optional): potential paired gRNAs
 
+7. on.target.summary: on target gRNA summary
+
 ### How to read Summary.xls
 
 names	: name of gRNA

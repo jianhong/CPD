@@ -6,7 +6,7 @@
 #' @param species character(1). Avaliable values: "mm9", "mm10", "hg19", "hg38", "danRer10"
 #' @param ... Parameters could be passed to \link[CRISPRseek:offTargetAnalysis]{offTargetAnalysis}. 
 #' Default settings are: scoring.method = "CFDscore", annotatePaired = FALSE, max.mismatch=1
-#' @return NULL
+#' @return invisible list of results of offTargetAnalysis
 #' @importFrom ChIPpeakAnno toGRanges 
 #' @importFrom CRISPRseek offTargetAnalysis
 #' @importFrom rtracklayer export.bed
@@ -15,9 +15,9 @@
 #' @import GenomicRanges
 #' @export
 #' @examples 
-#' gr <- system.file('extdata', 'Lamp3.bed', package = 'CPD')
+#' gr <- system.file('extdata', 'Sftpc.bed', package = 'CPD')
 #' gRNA(gr, anchor="onlyUpstream&Downstream", species="mm10", 
-#'        chromToSearch="chr16", outputDir="test")
+#'        chromToSearch="chr14", outputDir="test")
 #' 
 gRNA <- function(gr, upstream=2000, downstream=2000, anchor=c("TSS", "TES", "ALL", "onlyUpstream&Downstream"),
                    species=c("mm10", "mm9", "hg19", "hg38", "danRer10"), ...){
@@ -115,5 +115,6 @@ gRNA <- function(gr, upstream=2000, downstream=2000, anchor=c("TSS", "TES", "ALL
   writeXStringSet(x = seq, filepath = file.path(args$outputDir, "inputs.fa"), format="fasta")
   args$overwrite <- TRUE
   x <- do.call(what = offTargetAnalysis, args = args)
+  x <- filterRes(x, args$outputDir)
   invisible(x)
 }
