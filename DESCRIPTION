@@ -1,7 +1,7 @@
 Package: CPD
 Type: Package
 Title: CRISPR/Cas9 gRNA designer
-Version: 0.0.2
+Version: 0.0.3
 Author: Jianhong Ou
 Maintainer: Jianhong Ou <jianhong.ou@duke.edu>
 Description: CPD is a R/Bioconductor package for CRISPR/Cas9 gRNA design. 

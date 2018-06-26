@@ -106,7 +106,7 @@ In output folder, you will get multiple files.
 
 6. pairedgRNAs.xls (optional): potential paired gRNAs
 
-7. on.target.summary: on target gRNA summary
+7. on.target.summary.csv: on target gRNA summary
 
 ### How to read Summary.xls
 
@@ -132,3 +132,9 @@ REname : restriction enzyme name
 
 uniqREin200	: unique restriction enzyme names in upstream 100 and downstream 100 around the gRNA.
 
+### Merge top N gRNAs from multiple on.target.summary.csv file
+
+
+```
+topN <- topNgRNA(n=5)
+```
